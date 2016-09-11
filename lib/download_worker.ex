@@ -14,6 +14,31 @@ defmodule Magnetissimo.DownloadWorker do
     end
   end
 
+  # EZTV workers.
+  def perform(url, "eztv", "root_url") do
+    IO.puts "Crawling: #{url}"
+    pages = Magnetissimo.Parsers.EZTV.paginated_links(download(url))
+    pages 
+    |> Enum.each(fn url ->
+      Exq.enqueue(Exq, "eztv", "Magnetissimo.DownloadWorker", [url, "eztv", "paginated_links"])
+    end)
+  end
+
+  def perform(url, "eztv", "paginated_links") do
+    IO.puts "Crawling: #{url}"
+    torrent_links = Magnetissimo.Parsers.EZTV.torrent_links(download(url))
+    torrent_links
+    |> Enum.each(fn url ->
+      Exq.enqueue(Exq, "eztv", "Magnetissimo.DownloadWorker", [url, "eztv", "torrent_links"])
+    end)
+  end
+
+  def perform(url, "eztv", "torrent_links") do
+    IO.puts "Crawling: #{url}"
+    torrent = Magnetissimo.Parsers.EZTV.scrape_torrent_information(download(url))
+    Torrent.save_torrent(torrent)
+  end
+
   # Leetx workers.
   def perform(url, "leetx", "root_url") do
     IO.puts "Crawling: #{url}"
