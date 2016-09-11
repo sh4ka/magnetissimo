@@ -21,6 +21,7 @@ Want to talk about Magnetissimo or suggest features? We have an official subredd
 
 Magnetissimo currently fetches torrents from the following sites:
 
+- [x] EZTV (thanks to @agustif)
 - [x] Demonoid
 - [x] Isohunt
 - [x] LimeTorrents
