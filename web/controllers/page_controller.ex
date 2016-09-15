@@ -6,6 +6,7 @@ defmodule Magnetissimo.PageController do
   end
 
   def landing(conn, _params) do
+    conn = put_layout conn, false
     render conn, "landing.html"
   end
 end
