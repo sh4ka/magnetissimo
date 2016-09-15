@@ -50,10 +50,7 @@ defmodule Magnetissimo.Torrent do
     changeset = Torrent.changeset(%Torrent{}, torrent)
     case Repo.insert(changeset) do
       {:ok, _torrent} ->
-        Logger.info "★★★ - Torrent saved to database: #{torrent.name}"
-      {:error, changeset} ->
-        Logger.error "Couldn't save: #{torrent.name}"
-        IO.inspect changeset.errors
+        Logger.info "Torrent indexed: #{torrent.name}"
     end
   end
 end

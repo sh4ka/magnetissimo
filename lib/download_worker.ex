@@ -16,7 +16,6 @@ defmodule Magnetissimo.DownloadWorker do
 
   # EZTV workers.
   def perform(url, "eztv", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.EZTV.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -25,7 +24,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "eztv", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.EZTV.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -34,14 +32,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "eztv", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.EZTV.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # Leetx workers.
   def perform(url, "leetx", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.Leetx.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -50,7 +46,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "leetx", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.Leetx.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -59,14 +54,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "leetx", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.Leetx.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # ThePirateBay workers.
   def perform(url, "thepiratebay", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.ThePirateBay.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -75,7 +68,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "thepiratebay", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.ThePirateBay.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -84,14 +76,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "thepiratebay", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.ThePirateBay.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # Demonoid workers.
   def perform(url, "demonoid", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.Demonoid.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -100,7 +90,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "demonoid", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.Demonoid.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -109,14 +98,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "demonoid", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.Demonoid.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # Isohunt workers.
   def perform(url, "isohunt", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.Isohunt.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -125,7 +112,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "isohunt", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.Isohunt.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -134,14 +120,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "isohunt", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.Isohunt.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # Limetorrents workers.
   def perform(url, "limetorrents", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.Limetorrents.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -150,7 +134,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "limetorrents", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.Limetorrents.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -159,14 +142,12 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "limetorrents", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.Limetorrents.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end
 
   # Torrentdownload workers.
   def perform(url, "torrentdownloads", "root_url") do
-    IO.puts "Crawling: #{url}"
     pages = Magnetissimo.Parsers.TorrentDownloads.paginated_links(download(url))
     pages 
     |> Enum.each(fn url ->
@@ -175,7 +156,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "torrentdownloads", "paginated_links") do
-    IO.puts "Crawling: #{url}"
     torrent_links = Magnetissimo.Parsers.TorrentDownloads.torrent_links(download(url))
     torrent_links
     |> Enum.each(fn url ->
@@ -184,7 +164,6 @@ defmodule Magnetissimo.DownloadWorker do
   end
 
   def perform(url, "torrentdownloads", "torrent_links") do
-    IO.puts "Crawling: #{url}"
     torrent = Magnetissimo.Parsers.TorrentDownloads.scrape_torrent_information(download(url))
     Torrent.save_torrent(torrent)
   end

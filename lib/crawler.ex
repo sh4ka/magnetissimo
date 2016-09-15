@@ -1,6 +1,5 @@
 defmodule Magnetissimo.Crawler do
   use GenServer
-  require Logger
 
   def start_link do
     GenServer.start_link(__MODULE__, %{})
@@ -21,47 +20,38 @@ defmodule Magnetissimo.Crawler do
     enqueued_jobs = Enum.sum(queue_sizes)
 
     if enqueued_jobs == 0 do
-      Logger.info "Initiating crawler run."
-
       Magnetissimo.Parsers.EZTV.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: EZTV root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "eztv", "Magnetissimo.DownloadWorker", [url, "eztv", "root_url"])
       end)
 
       Magnetissimo.Parsers.ThePirateBay.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: ThePirateBay root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "thepiratebay", "Magnetissimo.DownloadWorker", [url, "thepiratebay", "root_url"])
       end)
 
       Magnetissimo.Parsers.Demonoid.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: Demonoid root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "demonoid", "Magnetissimo.DownloadWorker", [url, "demonoid", "root_url"])
       end)
 
       Magnetissimo.Parsers.Isohunt.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: Isohunt root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "isohunt", "Magnetissimo.DownloadWorker", [url, "isohunt", "root_url"])
       end)
 
       Magnetissimo.Parsers.Limetorrents.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: Limetorrents root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "limetorrents", "Magnetissimo.DownloadWorker", [url, "limetorrents", "root_url"])
       end)
 
       Magnetissimo.Parsers.TorrentDownloads.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: TorrentDownloads root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "torrentdownloads", "Magnetissimo.DownloadWorker", [url, "torrentdownloads", "root_url"])
       end)
 
       Magnetissimo.Parsers.Leetx.root_urls
-      |> Enum.each(fn url -> 
-        Logger.info "Queued: 1337x root_urls"
+      |> Enum.each(fn url ->
         Exq.enqueue(Exq, "leetx", "Magnetissimo.DownloadWorker", [url, "leetx", "root_url"])
       end)
     end
