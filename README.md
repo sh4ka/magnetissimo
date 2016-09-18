@@ -1,4 +1,4 @@
-# Magnetissimo
+# Magnetissimo [![StackShare](http://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](http://stackshare.io/sergiotapia/magnetissimo)
 
 Web application that indexes all popular torrent sites, and saves it to the local database.
 
