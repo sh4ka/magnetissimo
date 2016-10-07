@@ -1,4 +1,4 @@
-defmodule PhoenixMaru.API do
+defmodule PhoenixApi.API do
   use Maru.Router
 
   get do
