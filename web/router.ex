@@ -38,6 +38,6 @@ defmodule Magnetissimo.Router do
   scope path: "/api" do
     pipe_through :api
 
-    forward "/", PhoenixAPI.API
+    forward "/", PhoenixApi.API
   end
 end
