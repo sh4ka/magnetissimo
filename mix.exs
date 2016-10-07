@@ -47,7 +47,8 @@ defmodule Magnetissimo.Mixfile do
      {:exq, "~> 0.7.2"},
      {:exq_ui, "~> 0.7.0"},
      {:html_entities, "~> 0.3"},
-     {:gen_stage, "~> 0.4"}]
+     {:gen_stage, "~> 0.4"},
+     {:maru, "~> 0.10"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
