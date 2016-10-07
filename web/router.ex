@@ -33,4 +33,11 @@ defmodule Magnetissimo.Router do
     get "/browse", TorrentController, :index
     get "/summary", TorrentController, :summary
   end
+  
+  # API pipe
+  scope path: "/api" do
+    pipe_through :api
+
+    forward "/", PhoenixAPI.API
+  end
 end
